@@ -1,4 +1,13 @@
 '.source.mbdyn':
+  'constitutive-law-definition':
+    'prefix': 'constitutive law'
+    'body':  """
+          constitutive law: ${1:<label>},
+            ${2:[name , "<name>"]},
+            ${3: <dim> },
+            ${4: <constitutive_law>};
+        """
+    'description': 'Constitutive law definition'
   'reference-definition':
     'prefix': 'reference:'
     'body': """
@@ -10,7 +19,7 @@
         ${6:(Vec3)<absolute_angular_velocity>}
         ;
     """
-    'description': 'Reference frame.'
+    'description': 'Reference frame.'    'description': 'Reference frame.'
 '.source.mbdyn.section.data':
   'problem-definition':
     'prefix': 'problem:'
@@ -1050,6 +1059,321 @@
 #        # TODO
 #    """
 #    'description': 'Total internal couple element'
+# constitutive law
+  'linear-elastic-isotropic-definition':
+    'prefix': 'linear elastic isotropic'
+    'body': 'linear elastic isotropic, ${1:<stiffness>};'
+    'description': 'Constitutive law linear elastic isotropic'
+
+  'linear-elastic-generic-definition':
+    'prefix': 'linear elastic generic'
+    'body': 'linear elastic generic, ${1:<stiffness>};'
+    'description': 'Constitutive law linear elastic generic'
+
+  'linear-elastic-generic-axial-torsion-definition':
+    'prefix': 'linear elastic generic axial torsion'
+    'body': 'linear elastic generic axial torsion coupling,
+            ${1:<stiffness>},
+            ${2:<coupling_coefficient>} ;'
+    'description': 'Constitutive law linear elastic generic axial torsion coupling'
+
+  'cubic-elastic-generic-definition':
+    'prefix': 'cubic elastic generic'
+    'body': """ cubic elastic generic,
+                    ${1:<stiffness_1>},
+                    ${2:<stiffness_2>},
+                    ${3:<stiffness_3>};
+            """
+    'description': 'Constitutive law cubic elastic generic'
+
+  'inverse-square-elastic-definition':
+    'prefix': 'inverse square elastic'
+    'body': """ inverse square elastic, ${1:<stiffness>}, ${2:<ref_length>};
+            """
+    'description': 'Constitutive law scalar inverse square elastic'
+
+  'linear-elastic-bistop':
+    'prefix': 'linear elastic bistop'
+    'body': """ linear elastic bistop,
+                      ${1:<stiffness>},
+                      ${2:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${3:<activating_condition>} ,
+                      ${4:<deactivating_condition>};
+            """
+    'description': 'Constitutive law linear elastic bistop'
+
+  'double-linear-elastic-definition':
+    'prefix': 'double linear elastic'
+    'body': """ double linear elastic,
+                    ${1:<stiffness_1>},
+                    ${2:<upper_strain>},
+                    ${3:<lower_strain>},
+                    ${4:<stiffness_2>};
+            """
+    'description': 'Constitutive law double linear elastic'
+
+  'isotropic-hardening-elastic-definition':
+    'prefix': 'isotropic hardening elastic'
+    'body': """ isotropic hardening elastic,
+                    ${1:<stiffness>},
+                    ${2:<reference_strain>},
+                    ${3:[linear stiffness , <linear_stiffness> ]};
+            """
+    'description': 'Constitutive law isotropic hardening elastic'
+
+  'scalar-function-elastic-isotropic-definition':
+    'prefix': 'scalar function elastic isotropic'
+    'body': 'scalar function elastic isotropic, ${1:<function>};'
+    'description': 'Constitutive law scalar function elastic isotropic'
+
+  'scalar-function-elastic-orthotropic-definition':
+    'prefix': 'scalar function elastic orthotropic'
+    'body': """scalar function elastic orthotropic,
+                    ${1:\\{<function> | null \\}},
+                    ${2:\\{<function> | null \\}},
+                    ${3:\\{<function> | null \\}};
+            """
+    'description': 'Constitutive law scalar function elastic orthotropic'
+
+  'linear-viscous-isotropic-definition':
+    'prefix': 'linear viscous isotropic'
+    'body': """linear viscous isotropic, ${1:<viscosity>};"""
+    'description': 'Constitutive law linear viscous isotropic'
+
+  'linear-viscous-generic-definition':
+    'prefix': 'linear viscous generic'
+    'body': 'linear viscous generic, ${1:<viscosity>};'
+    'description': 'Constitutive law linear viscous generic'
+
+  'linear-viscoelastic-isotropic-definition':
+    'prefix': 'linear viscoelastic isotropic'
+    'body': """linear viscoelastic isotropic,
+                ${1:<stiffness>},
+                ${2:\\{<viscosity> | proportional , <factor>\\}};
+                """
+    'description': 'Constitutive law linear viscoelastic isotropic'
+
+  'linear-viscoelastic-generic-definition':
+    'prefix': 'linear viscoelastic generic'
+    'body': """linear viscoelastic generic,
+                ${1:<stiffness>},
+                ${2:\\{<viscosity> | proportional , <factor>\\}};
+                """
+    'description': 'Constitutive law linear viscoelastic generic'
+
+  'linear-time-variant-viscoelastic-generic-definition':
+    'prefix': 'linear time variant viscoelastic generic'
+    'body': """linear time variant viscoelastic generic,
+                ${1:<stiffness>},
+                ${2:<stiffness_scale>},
+                ${3:\\{<viscosity> | proportional , <factor>\\}},
+                ${4:<viscosity_scale>};
+                """
+    'description': 'Constitutive law linear viscoelastic generic'
+
+  'linear-viscoelastic-generic-axial-torsion-definition':
+    'prefix': 'linear elastic generic axial torsion'
+    'body': 'linear viscoelastic generic axial torsion coupling,
+            ${1:<stiffness>},
+            ${2:\\{<viscosity> | proportional , <factor>\\}},
+            ${3:<coupling_coefficient>} ;'
+    'description': 'Constitutive law linear viscoelastic generic axial torsion coupling'
+
+  'cubic-viscoelastic-generic-definition':
+    'prefix': 'cubic viscoelastic generic'
+    'body': """ cubic viscoelastic generic,
+                    ${1:<stiffness_1>},
+                    ${2:<stiffness_2>},
+                    ${3:<stiffness_3>},
+                    ${4:<viscosity>};
+            """
+    'description': 'Constitutive law cubic viscoelastic generic'
+
+  'double-linear-viscoelastic-definition':
+    'prefix': 'double linear viscoelastic'
+    'body': """ double linear viscoelastic,
+                    ${1:<stiffness_1>},
+                    ${2:<upper_strain>},
+                    ${3:<lower_strain>},
+                    ${4:<stiffness_2>},
+                    ${5:<viscosity>},
+                    ${6:[ second damping, <viscosity_2>]};
+            """
+    'description': 'Constitutive law double linear viscoelastic'
+
+  'turbulent-viscoelastic-definition':
+    'prefix': 'turbulent viscoelastic'
+    'body': """ turbulent viscoelastic,
+                    ${1:<stiffness>},
+                    ${2:<parabolic_viscosity>},
+                    ${3:[ <threshold>, [ <linear_viscosity> ]]};
+            """
+    'description': 'Constitutive law turbulent viscoelastic'
+
+  'linear-viscoelastic-bistop-definition':
+    'prefix': 'linear viscoelastic bistop'
+    'body': """ linear viscoelastic bistop,
+                      ${1:<stiffness>},
+                      ${2:<viscosity>},
+                      ${3:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${4:<activating_condition>} ,
+                      ${5:<deactivating_condition>};
+            """
+    'description': 'Constitutive law linear elastic bistop'
+
+  'shock-absorber-definition':
+    'prefix': 'shock absorber'
+    'body': """ shock absorber,
+                      ${1:[ prestrain , <value> ]},
+                      ${2:<reference_pressure>},
+                      ${3:<reference_area_for_force_computation>},
+                      ${4:<interaction_coefficient>},
+                      ${5:<polytropic_exponent>},
+                      ${6:[ epsilon max , <upper_strain_bound> , ]}
+                      ${7:[ epsilon min , <lower_strain_bound> , ]}
+                      ${8:[ penalty , <penalty_factor_for_strain> , <penalty_factor_for_strain_rate> , ]}
+                      ${9:[ metering , (DriveCaller)<metering_area> ,]}
+                      ${10:[ negative , (DriveCaller)<metering_area_for_negative_strain_rate> , ]}
+                      ${10:[ orifice , (DriveCaller)<orifice_area> , ]}
+                      ${11:<fluid_area>},
+                      ${12:<fluid_density>},
+                      ${13:<drag_coefficient_/_reference_length>},
+                      ${14:[ , friction , <reference_epsilon_prime> , <friction_amplitude_coefficient> ]};
+            """
+    'description': 'Constitutive law landing gear hydraulic shock absorber'
+
+  'symbolic-elastic-definition':
+    'prefix': 'symbolic elastic'
+    'body': """symbolic elastic,
+                ${1: epsilon , "<epsilon>"},
+                ${2: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic elastic'
+
+  'symbolic-viscous-definition':
+    'prefix': 'symbolic viscous'
+    'body': """symbolic viscous,
+                ${1: epsilon prime , "<epsilon_prime>"},
+                ${2: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic viscous'
+
+  'symbolic-viscoelastic-definition':
+    'prefix': 'symbolic viscoelastic'
+    'body': """symbolic viscoelastic,
+                ${1: epsilon , "<epsilon>"},
+                ${2: epsilon prime , "<epsilon_prime>"},
+                ${3: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic elastic'
+
+  'ann-elastic-definition':
+    'prefix': 'ann elastic'
+    'body': """ann elastic, ${1:"<file_name>"}; """
+    'description': 'Constitutive law ann elastic'
+
+  'ann-viscoelastic-definition':
+    'prefix': 'ann viscoelastic'
+    'body': """ann  viscoelastic, ${1:"<file_name>"}; """
+    'description': 'Constitutive law ann viscoelastic'
+
+  'nlsf-elastic-definition':
+    'prefix': 'nlsf elastic'
+    'body': """ nlsf elastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_force'>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf elastic'
+
+  'nlsf-viscous-definition':
+    'prefix': 'nlsf viscous'
+    'body': """ nlsf viscous,
+                      ${1:<kappa_0''>},
+                      ${2:\\{ null | <diag_force''>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscous'
+
+  'nlsf-viscoelastic-definition':
+    'prefix': 'nlsf viscoelastic'
+    'body': """ nlsf viscoelastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_force'>\\}},
+                      ${3:[ , ...]},
+                      ${4:<kappa_0''>},
+                      ${5:\\{ null | <diag_force''>\\}},
+                      ${6:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscoelastic'
+
+  'nlp-elastic-definition':
+    'prefix': 'nlp elastic'
+    'body': """ nlp elastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_stiffness>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlp elastic'
+
+  'nlp-viscous-definition':
+    'prefix': 'nlp viscous'
+    'body': """ nlp viscous,
+                      ${1:<kappa_0''>},
+                      ${2:\\{ null | <diag_damping>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscous'
+
+  'nlp-viscoelastic-definition':
+    'prefix': 'nlp viscoelastic'
+    'body': """ nlp viscoelastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_stiffness>\\}},
+                      ${3:[ , ...]},
+                      ${4:\\{ <kappa_0''> | proportional , <coeff> \\}},
+                      ${5:\\{ null | <diag_damping>\\}},
+                      ${6:[ , ...]};
+            """
+    'description': 'Constitutive law nlp viscoelastic'
+
+  'array-definition':
+    'prefix': 'array'
+    'body': """ array,
+                      ${1:<number>},
+                      ${2: <wrapped_const_law> [, ...]};
+            """
+    'description': 'Constitutive law wrapper'
+
+  'bistop-definition':
+    'prefix': 'bistop'
+    'body': """ bistop ,
+                      ${1:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${2:<activating_condition>} ,
+                      ${3:<deactivating_condition>},
+                      ${4:<wrapped_const_law>};
+            """
+    'description': 'Constitutive law bistop wrapper'
+
+  'invariant-angular-definition':
+    'prefix': 'invariant angular'
+    'body': """ invariant angular ,
+                      ${1:<xi>}, ${2:<wrapped_const_law>};
+            """
+    'description': 'Constitutive law invariant angular wrapper'
+
+  'cont-contact-definition':
+    'prefix': 'continuous contact'
+    'body': """ continuous contact ,
+                      ${1:[ sign , \\{ positive | negative | <sign_value> \\} , ]}
+                      ${2:[ formulation , \\{ flores | hunt crossley | lankarani nikravesh \\} , ]} ,
+                      restitution , ${3:<restitution_coef>},
+                      kappa , ${4:<stiffness>},
+                      exp , ${5:<exponent>},
+                      ${6: [ , EpsPrimeTol , <initial_eps_prime_tol> ]};
+            """
+    'description': 'Constitutive law bistop wrapper'
+
 '.source.mbdyn.element.electric.dcontrol':
   'electric-discete-control-control':
     'prefix': 'control'
@@ -1906,3 +2230,318 @@
         ${2: \\{all | <struct_node_label>, [, ...] \\}}
     """
     'description': 'Stream output content of type motion'
+
+'.source.mbdyn.definition.constitutivelaw':
+  'linear-elastic-isotropic-definition':
+    'prefix': 'linear elastic isotropic'
+    'body': 'linear elastic isotropic, ${1:<stiffness>};'
+    'description': 'Constitutive law linear elastic isotropic'
+
+  'linear-elastic-generic-definition':
+    'prefix': 'linear elastic generic'
+    'body': 'linear elastic generic, ${1:<stiffness>};'
+    'description': 'Constitutive law linear elastic generic'
+
+  'linear-elastic-generic-axial-torsion-definition':
+    'prefix': 'linear elastic generic axial torsion'
+    'body': 'linear elastic generic axial torsion coupling,
+            ${1:<stiffness>},
+            ${2:<coupling_coefficient>} ;'
+    'description': 'Constitutive law linear elastic generic axial torsion coupling'
+
+  'cubic-elastic-generic-definition':
+    'prefix': 'cubic elastic generic'
+    'body': """ cubic elastic generic,
+                    ${1:<stiffness_1>},
+                    ${2:<stiffness_2>},
+                    ${3:<stiffness_3>};
+            """
+    'description': 'Constitutive law cubic elastic generic'
+
+  'inverse-square-elastic-definition':
+    'prefix': 'inverse square elastic'
+    'body': """ inverse square elastic, ${1:<stiffness>}, ${2:<ref_length>};
+            """
+    'description': 'Constitutive law scalar inverse square elastic'
+
+  'linear-elastic-bistop':
+    'prefix': 'linear elastic bistop'
+    'body': """ linear elastic bistop,
+                      ${1:<stiffness>},
+                      ${2:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${3:<activating_condition>} ,
+                      ${4:<deactivating_condition>};
+            """
+    'description': 'Constitutive law linear elastic bistop'
+
+  'double-linear-elastic-definition':
+    'prefix': 'double linear elastic'
+    'body': """ double linear elastic,
+                    ${1:<stiffness_1>},
+                    ${2:<upper_strain>},
+                    ${3:<lower_strain>},
+                    ${4:<stiffness_2>};
+            """
+    'description': 'Constitutive law double linear elastic'
+
+  'isotropic-hardening-elastic-definition':
+    'prefix': 'isotropic hardening elastic'
+    'body': """ isotropic hardening elastic,
+                    ${1:<stiffness>},
+                    ${2:<reference_strain>},
+                    ${3:[linear stiffness , <linear_stiffness> ]};
+            """
+    'description': 'Constitutive law isotropic hardening elastic'
+
+  'scalar-function-elastic-isotropic-definition':
+    'prefix': 'scalar function elastic isotropic'
+    'body': 'scalar function elastic isotropic, ${1:<function>};'
+    'description': 'Constitutive law scalar function elastic isotropic'
+
+  'scalar-function-elastic-orthotropic-definition':
+    'prefix': 'scalar function elastic orthotropic'
+    'body': """scalar function elastic orthotropic,
+                    ${1:\\{<function> | null \\}},
+                    ${2:\\{<function> | null \\}},
+                    ${3:\\{<function> | null \\}};
+            """
+    'description': 'Constitutive law scalar function elastic orthotropic'
+
+  'linear-viscous-isotropic-definition':
+    'prefix': 'linear viscous isotropic'
+    'body': """linear viscous isotropic, ${1:<viscosity>};"""
+    'description': 'Constitutive law linear viscous isotropic'
+
+  'linear-viscous-generic-definition':
+    'prefix': 'linear viscous generic'
+    'body': 'linear viscous generic, ${1:<viscosity>};'
+    'description': 'Constitutive law linear viscous generic'
+
+  'linear-viscoelastic-isotropic-definition':
+    'prefix': 'linear viscoelastic isotropic'
+    'body': """linear viscoelastic isotropic,
+                ${1:<stiffness>},
+                ${2:\\{<viscosity> | proportional , <factor>\\}};
+                """
+    'description': 'Constitutive law linear viscoelastic isotropic'
+
+  'linear-viscoelastic-generic-definition':
+    'prefix': 'linear viscoelastic generic'
+    'body': """linear viscoelastic generic,
+                ${1:<stiffness>},
+                ${2:\\{<viscosity> | proportional , <factor>\\}};
+                """
+    'description': 'Constitutive law linear viscoelastic generic'
+
+  'linear-time-variant-viscoelastic-generic-definition':
+    'prefix': 'linear time variant viscoelastic generic'
+    'body': """linear time variant viscoelastic generic,
+                ${1:<stiffness>},
+                ${2:<stiffness_scale>},
+                ${3:\\{<viscosity> | proportional , <factor>\\}},
+                ${4:<viscosity_scale>};
+                """
+    'description': 'Constitutive law linear viscoelastic generic'
+
+  'linear-viscoelastic-generic-axial-torsion-definition':
+    'prefix': 'linear elastic generic axial torsion'
+    'body': 'linear viscoelastic generic axial torsion coupling,
+            ${1:<stiffness>},
+            ${2:\\{<viscosity> | proportional , <factor>\\}},
+            ${3:<coupling_coefficient>} ;'
+    'description': 'Constitutive law linear viscoelastic generic axial torsion coupling'
+
+  'cubic-viscoelastic-generic-definition':
+    'prefix': 'cubic viscoelastic generic'
+    'body': """ cubic viscoelastic generic,
+                    ${1:<stiffness_1>},
+                    ${2:<stiffness_2>},
+                    ${3:<stiffness_3>},
+                    ${4:<viscosity>};
+            """
+    'description': 'Constitutive law cubic viscoelastic generic'
+
+  'double-linear-viscoelastic-definition':
+    'prefix': 'double linear viscoelastic'
+    'body': """ double linear viscoelastic,
+                    ${1:<stiffness_1>},
+                    ${2:<upper_strain>},
+                    ${3:<lower_strain>},
+                    ${4:<stiffness_2>},
+                    ${5:<viscosity>},
+                    ${6:[ second damping, <viscosity_2>]};
+            """
+    'description': 'Constitutive law double linear viscoelastic'
+
+  'turbulent-viscoelastic-definition':
+    'prefix': 'turbulent viscoelastic'
+    'body': """ turbulent viscoelastic,
+                    ${1:<stiffness>},
+                    ${2:<parabolic_viscosity>},
+                    ${3:[ <threshold>, [ <linear_viscosity> ]]};
+            """
+    'description': 'Constitutive law turbulent viscoelastic'
+
+  'linear-viscoelastic-bistop-definition':
+    'prefix': 'linear viscoelastic bistop'
+    'body': """ linear viscoelastic bistop,
+                      ${1:<stiffness>},
+                      ${2:<viscosity>},
+                      ${3:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${4:<activating_condition>} ,
+                      ${5:<deactivating_condition>};
+            """
+    'description': 'Constitutive law linear elastic bistop'
+
+  'shock-absorber-definition':
+    'prefix': 'shock absorber'
+    'body': """ shock absorber,
+                      ${1:[ prestrain , <value> ]},
+                      ${2:<reference_pressure>},
+                      ${3:<reference_area_for_force_computation>},
+                      ${4:<interaction_coefficient>},
+                      ${5:<polytropic_exponent>},
+                      ${6:[ epsilon max , <upper_strain_bound> , ]}
+                      ${7:[ epsilon min , <lower_strain_bound> , ]}
+                      ${8:[ penalty , <penalty_factor_for_strain> , <penalty_factor_for_strain_rate> , ]}
+                      ${9:[ metering , (DriveCaller)<metering_area> ,]}
+                      ${10:[ negative , (DriveCaller)<metering_area_for_negative_strain_rate> , ]}
+                      ${10:[ orifice , (DriveCaller)<orifice_area> , ]}
+                      ${11:<fluid_area>},
+                      ${12:<fluid_density>},
+                      ${13:<drag_coefficient_/_reference_length>},
+                      ${14:[ , friction , <reference_epsilon_prime> , <friction_amplitude_coefficient> ]};
+            """
+    'description': 'Constitutive law landing gear hydraulic shock absorber'
+
+  'symbolic-elastic-definition':
+    'prefix': 'symbolic elastic'
+    'body': """symbolic elastic,
+                ${1: epsilon , "<epsilon>"},
+                ${2: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic elastic'
+
+  'symbolic-viscous-definition':
+    'prefix': 'symbolic viscous'
+    'body': """symbolic viscous,
+                ${1: epsilon prime , "<epsilon_prime>"},
+                ${2: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic viscous'
+
+  'symbolic-viscoelastic-definition':
+    'prefix': 'symbolic viscoelastic'
+    'body': """symbolic viscoelastic,
+                ${1: epsilon , "<epsilon>"},
+                ${2: epsilon prime , "<epsilon_prime>"},
+                ${3: expression , "<expression>"};
+                """
+    'description': 'Constitutive law symbolic elastic'
+
+  'ann-elastic-definition':
+    'prefix': 'ann elastic'
+    'body': """ann elastic, ${1:"<file_name>"}; """
+    'description': 'Constitutive law ann elastic'
+
+  'ann-viscoelastic-definition':
+    'prefix': 'ann viscoelastic'
+    'body': """ann  viscoelastic, ${1:"<file_name>"}; """
+    'description': 'Constitutive law ann viscoelastic'
+
+  'nlsf-elastic-definition':
+    'prefix': 'nlsf elastic'
+    'body': """ nlsf elastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_force'>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf elastic'
+
+  'nlsf-viscous-definition':
+    'prefix': 'nlsf viscous'
+    'body': """ nlsf viscous,
+                      ${1:<kappa_0''>},
+                      ${2:\\{ null | <diag_force''>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscous'
+
+  'nlsf-viscoelastic-definition':
+    'prefix': 'nlsf viscoelastic'
+    'body': """ nlsf viscoelastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_force'>\\}},
+                      ${3:[ , ...]},
+                      ${4:<kappa_0''>},
+                      ${5:\\{ null | <diag_force''>\\}},
+                      ${6:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscoelastic'
+
+  'nlp-elastic-definition':
+    'prefix': 'nlp elastic'
+    'body': """ nlp elastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_stiffness>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlp elastic'
+
+  'nlp-viscous-definition':
+    'prefix': 'nlp viscous'
+    'body': """ nlp viscous,
+                      ${1:<kappa_0''>},
+                      ${2:\\{ null | <diag_damping>\\}},
+                      ${3:[ , ...]};
+            """
+    'description': 'Constitutive law nlsf viscous'
+
+  'nlp-viscoelastic-definition':
+    'prefix': 'nlp viscoelastic'
+    'body': """ nlp viscoelastic,
+                      ${1:<kappa_0'>},
+                      ${2:\\{ null | <diag_stiffness>\\}},
+                      ${3:[ , ...]},
+                      ${4:\\{ <kappa_0''> | proportional , <coeff> \\}},
+                      ${5:\\{ null | <diag_damping>\\}},
+                      ${6:[ , ...]};
+            """
+    'description': 'Constitutive law nlp viscoelastic'
+
+  'array-definition':
+    'prefix': 'array'
+    'body': """ array,
+                      ${1:<number>},
+                      ${2: <wrapped_const_law> [, ...]};
+            """
+    'description': 'Constitutive law wrapper'
+
+  'bistop-definition':
+    'prefix': 'bistop'
+    'body': """ bistop ,
+                      ${1:[ initial status , \\{ inactive | active | (bool) <status> \\} , ]}
+                      ${2:<activating_condition>} ,
+                      ${3:<deactivating_condition>},
+                      ${4:<wrapped_const_law>};
+            """
+    'description': 'Constitutive law bistop wrapper'
+
+  'invariant-angular-definition':
+    'prefix': 'invariant angular'
+    'body': """ invariant angular ,
+                      ${1:<xi>}, ${2:<wrapped_const_law>};
+            """
+    'description': 'Constitutive law invariant angular wrapper'
+
+  'cont-contact-definition':
+    'prefix': 'continuous contact'
+    'body': """ continuous contact ,
+                      ${1:[ sign , \\{ positive | negative | <sign_value> \\} , ]}
+                      [ formulation , ${2: \\{ flores | hunt crossley | lankarani nikravesh \\} , ]} ,
+                      restitution , ${3:<restitution_coef>},
+                      kappa , ${4:<stiffness>},
+                      exp , ${5:<exponent>},
+                      [ , EpsPrimeTol ,${6: <initial_eps_prime_tol> ]};
+            """
+    'description': 'Constitutive law bistop wrapper'

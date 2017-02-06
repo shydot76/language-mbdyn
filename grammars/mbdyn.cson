@@ -215,6 +215,24 @@ repository:
 				]
 			}
 			{
+				begin: '\\b(constitutive law)\\b\:'
+				beginCaptures:
+					'1':
+						name: 'keyword.control.mbdyn'
+					'2':
+						name: 'punctuation.definition.mbdyn'
+				end: '\;'
+				endCaptures:
+					'1':
+						name: 'punctuation.terminator.mbdyn'
+				contentName: 'source.mbdyn.definition.constitutivelaw'
+				patterns: [
+					{
+						include: '$self'
+					}
+				]
+			}
+			{
 				begin: '\\b(strategy)\\b\:'
 				beginCaptures:
 					'1':
